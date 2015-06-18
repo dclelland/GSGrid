@@ -13,6 +13,10 @@ For example:
 
     CGRect rect = CGRectWithGridRectInGrid(GSGridRectMake(0, 0, 1, 1), grid);
 
+    NSLog(@"%@", NSStringFromCGRect(rect));
+
+    > {{0, 0}, {29, 29}}
+
 Returns the first cell in a 2 by 2 grid of 60pt square, with a vertical and horizontal gutter of 2pt.
 
 The hard work of rounding the rect to integer number of pixels is taken care of automatically, so that a constant gutter appears between adjacent rects.
