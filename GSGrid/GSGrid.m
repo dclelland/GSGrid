@@ -45,14 +45,14 @@ GSGrid GSGridMake(GSGridSize size, CGRect bounds, CGSize gutter)
 
 CGRect CGRectWithGridRectInGrid(GSGridRect rect, GSGrid grid)
 {
-    CGFloat width = (CGRectGetWidth(grid.bounds) + grid.gutter.width) / grid.size.columns;
-    CGFloat height = (CGRectGetHeight(grid.bounds) + grid.gutter.height) / grid.size.rows;
+    CGFloat width = (grid.gutter.width + CGRectGetWidth(grid.bounds)) / grid.size.columns;
+    CGFloat height = (grid.gutter.height + CGRectGetHeight(grid.bounds)) / grid.size.rows;
 
-    CGFloat left = round(width * rect.origin.x);
-    CGFloat top = round(height * rect.origin.y);
+    CGFloat left = round(width * rect.origin.x + CGRectGetMinX(grid.bounds));
+    CGFloat top = round(height * rect.origin.y + CGRectGetMinY(grid.bounds));
 
-    CGFloat right = round(width * (rect.origin.x + rect.size.columns) - grid.gutter.width);
-    CGFloat bottom = round(height * (rect.origin.y + rect.size.rows) - grid.gutter.height);
+    CGFloat right = round(width * (rect.origin.x + rect.size.columns) - grid.gutter.width + CGRectGetMinX(grid.bounds));
+    CGFloat bottom = round(height * (rect.origin.y + rect.size.rows) - grid.gutter.height + CGRectGetMinY(grid.bounds));
 
     return CGRectMake(left, top, right - left, bottom - top);
 }
@@ -60,6 +60,6 @@ CGRect CGRectWithGridRectInGrid(GSGridRect rect, GSGrid grid)
 CGRect CGRectWithIndexInGrid(NSUInteger index, GSGrid grid)
 {
     GSGridRect rect = GSGridRectMake(index % grid.size.columns, index / grid.size.columns, 1, 1);
-    
+
     return CGRectWithGridRectInGrid(rect, grid);
 }
