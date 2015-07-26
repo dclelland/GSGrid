@@ -6,7 +6,7 @@
 #
 Pod::Spec.new do |s|
   s.name                    = "GSGrid"
-  s.version                 = "0.0.1"
+  s.version                 = "0.0.2"
   s.summary                 = "Basic CGRect grid layout helpers."
   s.homepage                = "https://github.com/dclelland/GSGrid"
   s.license                 = { :type => 'MIT' }
