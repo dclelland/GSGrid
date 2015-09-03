@@ -45,14 +45,16 @@ GSGrid GSGridMake(GSGridSize size, CGRect bounds, CGSize gutter)
 
 CGRect CGRectWithGridRectInGrid(GSGridRect rect, GSGrid grid)
 {
+    CGFloat scale = [UIScreen mainScreen].scale;
+
     CGFloat width = (grid.gutter.width + CGRectGetWidth(grid.bounds)) / grid.size.columns;
     CGFloat height = (grid.gutter.height + CGRectGetHeight(grid.bounds)) / grid.size.rows;
 
-    CGFloat left = round(width * rect.origin.x + CGRectGetMinX(grid.bounds));
-    CGFloat top = round(height * rect.origin.y + CGRectGetMinY(grid.bounds));
+    CGFloat left = round((width * rect.origin.x + CGRectGetMinX(grid.bounds)) * scale) / scale;
+    CGFloat top = round((height * rect.origin.y + CGRectGetMinY(grid.bounds)) * scale) / scale;
 
-    CGFloat right = round(width * (rect.origin.x + rect.size.columns) - grid.gutter.width + CGRectGetMinX(grid.bounds));
-    CGFloat bottom = round(height * (rect.origin.y + rect.size.rows) - grid.gutter.height + CGRectGetMinY(grid.bounds));
+    CGFloat right = round((width * (rect.origin.x + rect.size.columns) - grid.gutter.width + CGRectGetMinX(grid.bounds)) * scale) / scale;
+    CGFloat bottom = round((height * (rect.origin.y + rect.size.rows) - grid.gutter.height + CGRectGetMinY(grid.bounds)) * scale) / scale;
 
     return CGRectMake(left, top, right - left, bottom - top);
 }
