@@ -1,6 +1,10 @@
 GSGrid
 ======
 
+GSGrid is deprecated in favour of [GridSpan](https://github.com/dclelland/GridSpan).
+
+---
+
 `GSGrid` is a set of basic structs to help build basic grid layouts.
 
 It allows you to specify a `GSGrid` structure with a number of rows and columns, a bounds, and a gutter width and height, and then calculate `CGRect`s within that grid.
